@@ -8,16 +8,19 @@ var specialChar = '';
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var nums = "0123456789";
 var spCHARS = "`~!@#$%^&*()_+|}{“:?><[]\\;',./-=";
-var newPassword = [];
+var workingPassword = [];
+var finalPassword = '';
 
 //my arrays
 var arrUPPER = alphabet.toUpperCase().split("");
 var arrLOWER = alphabet.toLowerCase().split("");
 var arrNUMS = nums.split("");
 var arrSPCH = spCHARS.split('');
-
+var arrMEGA = [];
 
 function generatePassword(){
+var workingPassword = [];
+var finalPassword = '';
 
 passwordLength = prompt("How long would you like your password to be? Please choose a number between 8 and 128");
 
@@ -39,22 +42,31 @@ while(!upperCase && !lowerCase && !numbers && !specialChar){
 }
 
 if(upperCase){
-    newPassword.push(arrUPPER[Math.floor(Math.random()*arrUPPER.length)])
+    workingPassword.push(arrUPPER[Math.floor(Math.random()*arrUPPER.length)])
+    passwordLength -= 1;
+    arrMEGA = arrMEGA.concat(arrUPPER);
 }
 if(lowerCase){
-    newPassword.push(arrLOWER[Math.floor(Math.random()*arrLOWER.length)])
+    workingPassword.push(arrLOWER[Math.floor(Math.random()*arrLOWER.length)])
+    passwordLength -= 1;
+    arrMEGA = arrMEGA.concat(arrLOWER);
 }
 if(numbers){
-    newPassword.push(arrNUMS[Math.floor(Math.random()*arrNUMS.length)])
+    workingPassword.push(arrNUMS[Math.floor(Math.random()*arrNUMS.length)])
+    passwordLength -= 1;
+    arrMEGA = arrMEGA.concat(arrNUMS);
 }
 if(specialChar){
-    newPassword.push(arrSPCH[Math.floor(Math.random()*arrSPCH.length)])
+    workingPassword.push(arrSPCH[Math.floor(Math.random()*arrSPCH.length)])
+    passwordLength -= 1;
+    arrMEGA = arrMEGA.concat(arrSPCH);
 }
 
-var pass = newPassword.join("");
-console.log(newPassword);
 
-alert("You chose " + pass);
+
+console.log(workingPassword);
+
+alert("You chose " + arrMEGA);
 
   // need the following variables:
   //variable for the selected length
@@ -89,10 +101,10 @@ alert("You chose " + pass);
   //if pushing to a megar-array randomly generate a number to pull a character from the array 
   //if pushing to a megar-array, rememebr to set the array back to an empty array at the start of the process!
   // then RETURN password.
+ 
 
-  console.log('YOOOOOOOOOO!');
-  var password = "COMMENT ME";
-  return pass;
+  finalPassword = workingPassword.join("");
+  return finalPassword;
 }
 // Write password to the #password input
 function writePassword() {
